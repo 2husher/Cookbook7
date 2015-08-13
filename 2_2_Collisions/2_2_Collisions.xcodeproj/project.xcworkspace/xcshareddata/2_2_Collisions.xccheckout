@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DD78D933-C834-49EA-84AE-8B21EB1C6DC0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>2_2_Collisions</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>990A53FF17F21DE65B0707CC74D1A42201CE5B92</key>
+		<string>https://github.com/2husher/Cookbook7.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>2_2_Collisions/2_2_Collisions.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>990A53FF17F21DE65B0707CC74D1A42201CE5B92</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/2husher/Cookbook7.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>990A53FF17F21DE65B0707CC74D1A42201CE5B92</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>990A53FF17F21DE65B0707CC74D1A42201CE5B92</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Cookbook7</string>
+		</dict>
+	</array>
+</dict>
+</plist>

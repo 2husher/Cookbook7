@@ -12,14 +12,44 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    /* Load the color */
+    UIColor *steelBlueColor =[UIColor colorWithRed:0.3f
+                                             green:0.4f
+                                              blue:0.6f
+                                             alpha:1.0f];
+
+    /* Set the color in the graphical context */
+    [steelBlueColor set];
+
     UIFont *helveticaBold = [UIFont fontWithName:@"HelveticaNeue-Bold"
-                                            size:40.0f];
-    NSString *myString = @"Some String";
+                                            size:30.0f];
+    NSString *myString = @"I Learn Really Fast";
     
-    [myString drawAtPoint:CGPointMake(40, 180)
-           withAttributes:@{
-                            NSFontAttributeName : helveticaBold
-                            }];
+//    [myString drawAtPoint:CGPointMake(20, 180)
+//           withAttributes:@{
+//                            NSFontAttributeName : helveticaBold
+//                            }];
+
+    [myString drawWithRect:CGRectMake(100, /* x */
+                                      120, /* y */
+                                      100, /* width */
+                                      200)
+                   options:NSStringDrawingUsesLineFragmentOrigin
+                attributes:@{
+                             NSFontAttributeName : helveticaBold
+                             }
+                   context:nil];
+
+    CGColorRef colorRef        = steelBlueColor.CGColor;
+    const CGFloat *components  = CGColorGetComponents(colorRef);
+    NSUInteger componentsCount = CGColorGetNumberOfComponents(colorRef);
+
+    NSUInteger counter = 0;
+    for (counter = 0; counter < componentsCount; counter++)
+    {
+        NSLog(@"Component %lu = %.02f",
+              (unsigned long)counter + 1, components[counter]);
+    }
 }
 
 @end

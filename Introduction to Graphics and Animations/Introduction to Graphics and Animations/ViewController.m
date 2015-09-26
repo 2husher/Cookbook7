@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 
-    [self enumerateFonts];
+//    [self enumerateFonts];
 
     __unused UIFont *font = [UIFont fontWithName:@"Baskerville-SemiBoldItalic"
                                    size:12.0f];

@@ -10,12 +10,16 @@
 
 @implementation View
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)drawRect:(CGRect)rect
+{
+    UIFont *helveticaBold = [UIFont fontWithName:@"HelveticaNeue-Bold"
+                                            size:40.0f];
+    NSString *myString = @"Some String";
+    
+    [myString drawAtPoint:CGPointMake(40, 180)
+           withAttributes:@{
+                            NSFontAttributeName : helveticaBold
+                            }];
 }
-*/
 
 @end

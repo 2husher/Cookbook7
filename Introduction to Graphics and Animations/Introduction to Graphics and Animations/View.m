@@ -50,6 +50,24 @@
         NSLog(@"Component %lu = %.02f",
               (unsigned long)counter + 1, components[counter]);
     }
+
+    UIImage *xcodeIcon = [UIImage imageNamed:@"Xcode"];
+    if (xcodeIcon != nil)
+    {
+        NSLog(@"Successfully loaded the image.");
+    }
+    else
+    {
+        NSLog(@"Failed to load the image.");
+    }
+
+    [xcodeIcon drawAtPoint:CGPointMake(0.0f,
+                                       20.0f)];
+    [xcodeIcon drawInRect:CGRectMake(50.0f,
+                                     10.0f,
+                                     40.0f,
+                                     35.0f)];
+
 }
 
 @end

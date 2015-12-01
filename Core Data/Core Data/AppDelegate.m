@@ -22,46 +22,17 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     self.window = [[UIWindow alloc]
                    initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    [self createNewPersonWithFirstName:@"Tony"
-                              lastName:@"Stark"
-                                   age:40];
+//    [self createNewPersonWithFirstName:@"Tony"
+//                              lastName:@"Stark"
+//                                   age:40];
+//
+//    [self createNewPersonWithFirstName:@"Clark"
+//                              lastName:@"Kent"
+//                                   age:20];
 
-    [self createNewPersonWithFirstName:@"Clark"
-                              lastName:@"Kent"
-                                   age:20];
+    [self readingPersons];
 
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]
-                                    initWithEntityName:@"Person"];
-    NSError *requestError = nil;
-
-    NSArray *persons =
-        [self.managedObjectContext executeFetchRequest:fetchRequest
-                                                 error:&requestError];
-
-    if ([persons count] > 0)
-    {
-        NSUInteger counter = 1;
-        for (Person *person in persons)
-        {
-            NSLog(@"Person %lu First name: %@",
-                  (unsigned long)counter,
-                  person.firstName);
-
-            NSLog(@"Person %lu Last name: %@",
-                  (unsigned long)counter,
-                  person.lastName);
-
-            NSLog(@"Person %lu Age: %ld",
-                  (unsigned long)counter,
-                  [person.age unsignedIntegerValue]);
-
-            counter++;
-        }
-    }
-    else
-    {
-        NSLog(@"Could not find Person entities in the context");
-    }
+    [self deletingLastPerson];
 
     self.viewController = [[ViewController alloc]
                            initWithNibName:nil
@@ -113,6 +84,83 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     }
 
     return result;
+}
+
+- (void)readingPersons
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]
+                                    initWithEntityName:@"Person"];
+    NSError *requestError = nil;
+
+    NSArray *persons =
+    [self.managedObjectContext executeFetchRequest:fetchRequest
+                                             error:&requestError];
+
+    if ([persons count] > 0)
+    {
+        NSUInteger counter = 1;
+        for (Person *person in persons)
+        {
+            NSLog(@"Person %lu First name: %@",
+                  (unsigned long)counter,
+                  person.firstName);
+
+            NSLog(@"Person %lu Last name: %@",
+                  (unsigned long)counter,
+                  person.lastName);
+
+            NSLog(@"Person %lu Age: %ld",
+                  (unsigned long)counter,
+                  [person.age unsignedIntegerValue]);
+
+            counter++;
+        }
+    }
+    else
+    {
+        NSLog(@"Could not find Person entities in the context");
+    }
+}
+
+- (void)deletingLastPerson
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]
+                                    initWithEntityName:@"Person"];
+    NSError *requestError = nil;
+
+    NSArray *persons =
+    [self.managedObjectContext executeFetchRequest:fetchRequest
+                                             error:&requestError];
+
+    if ([persons count] > 0)
+    {
+        Person *lastPerson = [persons lastObject];
+
+        [self.managedObjectContext deleteObject:lastPerson];
+
+        if ([lastPerson isDeleted])
+        {
+            NSLog(@"Successfully deleted the last person");
+
+            NSError *savingError = nil;
+            if ([self.managedObjectContext save:&savingError])
+            {
+                NSLog(@"Successfully saved the context");
+            }
+            else
+            {
+                NSLog(@"Failed to save the context. Error: %@", savingError);
+            }
+        }
+        else
+        {
+            NSLog(@"Failed to delete the last person");
+        }
+    }
+    else
+    {
+        NSLog(@"Could not find Person entities in the context");
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -29,10 +29,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 //    [self createNewPersonWithFirstName:@"Clark"
 //                              lastName:@"Kent"
 //                                   age:20];
-
+//
     [self readingPersons];
 
-    [self deletingLastPerson];
+//    [self deletingLastPerson];
+
+    [self sortingPersons];
 
     self.viewController = [[ViewController alloc]
                            initWithNibName:nil
@@ -155,6 +157,40 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         else
         {
             NSLog(@"Failed to delete the last person");
+        }
+    }
+    else
+    {
+        NSLog(@"Could not find Person entities in the context");
+    }
+}
+
+- (void)sortingPersons
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]
+                                    initWithEntityName:@"Person"];
+
+    NSSortDescriptor *ageSort = [[NSSortDescriptor alloc]
+                                 initWithKey:@"age" ascending:YES];
+
+    NSSortDescriptor *firstNameSort = [[NSSortDescriptor alloc]
+                                       initWithKey:@"firstName" ascending:YES];
+
+    fetchRequest.sortDescriptors = @[ageSort, firstNameSort];
+
+    NSError *requestError = nil;
+
+    NSArray *persons =
+    [self.managedObjectContext executeFetchRequest:fetchRequest
+                                             error:&requestError];
+
+    if ([persons count] > 0)
+    {
+        for (Person *person in persons)
+        {
+            NSLog(@"First name: %@", person.firstName);
+            NSLog(@"Last name: %@", person.lastName);
+            NSLog(@"Age: %ld", [person.age unsignedIntegerValue]);
         }
     }
     else
